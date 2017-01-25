@@ -95,6 +95,7 @@
       <scope>provided</scope>
     </dependency>   
   </dependencies>
+    
   <build>
   	<finalName>spring-session</finalName>
   </build>
