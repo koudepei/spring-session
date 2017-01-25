@@ -19,7 +19,7 @@ import redis.clients.jedis.JedisCluster;
 public class TestController {
 	
 	@RequestMapping("/login")
-	public void login(HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody String login(HttpServletRequest request,HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		System.out.println(request.getLocalName());
 		System.out.println(request.getContentType());
@@ -32,15 +32,17 @@ public class TestController {
 		System.out.println(session.getAttribute("jack"));
 		
 		try {
-			System.out.println(InetAddress.getLocalHost().getHostAddress()+":"+InetAddress.getLocalHost().getHostName());
+			System.out.println(InetAddress.getLocalHost().getHostAddress()+"::"+InetAddress.getLocalHost().getHostName());
+			return InetAddress.getLocalHost().getHostAddress()+"::"+InetAddress.getLocalHost().getHostName();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	@RequestMapping("/queryUser")
-	public String queryUserInfo(HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody String queryUserInfo(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String name1 = (String) session.getAttribute("jack");
 		String name2 = (String) session.getAttribute("jack1");
